@@ -17,12 +17,21 @@ header h1 {
     height: 2px;
     background: #7d97ad;
     overflow: hidden;
+    grid-area: hr;
 }
 
-h2 {
+.cell h2 {
     color: #7d97ad;
     text-transform: uppercase;
+    margin-bottom: 0px;
+    margin-after: 0px;
+    -webkit-margin-after: 0em;
 
+}
+
+.cell p {
+    margin-before: 5px;
+    -webkit-margin-before: 5px;    
 }
 
 svg.color-swatch {
@@ -36,6 +45,19 @@ svg.color-swatch {
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.color-bar {
+    grid-area: color-bar;
+}
+
+.main-picture {
+    grid-area: main-picture;
+}
+
+.main-picture img {
+    width: 100%;
+}
+
 
 svg {
     display: block;
@@ -53,6 +75,10 @@ svg {
     background-color: #7d97ad;
 }
 
+.featured-work {
+    grid-area: featured-work;
+}
+
 .featured-work svg {
     width: 240px;
     height: 180px;
@@ -65,7 +91,6 @@ svg {
 
 
 h3 {
-    text-transform: uppercase;
     color: #2d3c49;
 }
 
@@ -80,10 +105,17 @@ h3 {
 .wrapper {
     display: grid;
     grid-gap: 20px;
+    grid-template-areas: 
+        "header"
+        "hr"
+        "color-bar"
+        "main-picture"
+        "featured-work";
 }
 
 header {
     display: flex;
+    grid-area: header;
 }
 
 .info {
@@ -108,4 +140,22 @@ header h4 {
 
 .containter {
     clear: both;
+}
+
+@media screen and (min-width:710px) {
+    .wrapper {
+    grid-template-columns: 120px 1fr;
+    grid-template-areas: 
+        ". header"
+        ". hr"
+        "color-bar main-picture"
+        "color-bar featured-work"
+    }
+
+    .color-bar {
+        /* Once we switch to a column layout,
+         * don't flex the color-bar swatches 
+        */
+        display: block;
+    }
 }
